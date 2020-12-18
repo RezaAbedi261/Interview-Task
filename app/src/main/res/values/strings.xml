@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Interview Task</string>
+    <string name="map_fragment">نقشه</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoidG9oaWRoYWppMTk5MiIsImEiOiJja2RwMTRleW8wcTV1MnJtcW9sczA5dTlmIn0.mo1vqSyGaXqbQj_X4Sg_9A</string>
+    <string name="detail_fragment">جزییات</string>
+    <string name="parsimap_dark" translatable="false">https://www.parsimap.com/styles/dark.json</string>
+    <string name="parsimap_street" translatable="false">https://www.parsimap.com/styles/street.json</string>
 </resources>

@@ -15,6 +15,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.observe
 import com.google.android.material.snackbar.Snackbar
 import com.task.interview.R
+import com.task.interview.didInitKoin
 import com.task.interview.utils.AndroidUIUtils
 import com.task.interview.utils.LocaleHelper
 import com.task.interview.utils.UiHelper
@@ -84,9 +85,12 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
     }
 
     override fun attachBaseContext(newBase: Context) {
-
-        val newContext = LocaleHelper.changeLocaleInContext(newBase)
-        super.attachBaseContext(newContext)
+        if(didInitKoin) {
+            val newContext = LocaleHelper.changeLocaleInContext(newBase)
+            super.attachBaseContext(newContext)
+        } else {
+            super.attachBaseContext(newBase)
+        }
 
     }
 
