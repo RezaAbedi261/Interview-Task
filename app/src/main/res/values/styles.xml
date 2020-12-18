@@ -7,4 +7,26 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Theme_Dialog" parent="android:Theme.Holo.Dialog">
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+    </style>
+
+    <style name="BaseTextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+
+    <style name="BaseTextView.Default">
+        <item name="android:fontFamily">@font/iran_sans_medium</item>
+        <item name="fontFamily">@font/iran_sans_medium</item>
+    </style>
+
+    <style name="BaseTextView.Default.LocaleNumerals">
+        <item name="android:fontFamily">@font/iran_sans_medium</item>
+        <item name="fontFamily">@font/iran_sans_medium</item>
+    </style>
+
 </resources>
