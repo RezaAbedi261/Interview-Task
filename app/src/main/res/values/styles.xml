@@ -22,4 +22,11 @@
         <item name="fontFamily">@font/iran_sans_medium</item>
     </style>
 
+
+    <style name="BaseTextView.Default.Title">
+        <item name="android:fontFamily">@font/iran_sans_medium</item>
+        <item name="fontFamily">@font/iran_sans_medium</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>
