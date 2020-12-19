@@ -5,4 +5,5 @@
     <string name="detail_fragment">جزییات</string>
     <string name="parsimap_dark" translatable="false">https://www.parsimap.com/styles/dark.json</string>
     <string name="parsimap_street" translatable="false">https://www.parsimap.com/styles/street.json</string>
+    <string name="wait">Please Wait!</string>
 </resources>

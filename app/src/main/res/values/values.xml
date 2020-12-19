@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    300-->
+    <integer name="navigation_animation_duration_normal">300</integer>
+<!--    250-->
+    <integer name="navigation_animation_duration_fast">250</integer>
+</resources>
