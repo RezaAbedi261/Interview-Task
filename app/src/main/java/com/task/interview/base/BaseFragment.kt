@@ -11,6 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.observe
+import androidx.navigation.NavDirections
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import com.task.interview.App
 import com.task.interview.di.inject
 import com.task.interview.ui.dialog.LoadingDialog
@@ -75,6 +78,13 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
         livaData.observe(this@BaseFragment) {
             function.invoke(it)
         }
+    }
+
+
+
+    fun navigate(destination: NavDirections, options: NavOptions?) = with(findNavController()) {
+        currentDestination?.getAction(destination.actionId)
+            ?.let { navigate(destination,options) }
     }
 
 

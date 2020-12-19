@@ -1,9 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
-    <color name="black">#000</color>
-    <color name="white">#fff</color>
+
+    <color name="sb_scorpion">#575757</color>
+    <color name="brown_grey">#a3a3a3</color>
+    <color name="android_windowBackground">#ffffff</color>
+    <color name="colorPrimary">#455A64</color>
+    <color name="colorPrimaryDark">#27333A</color>
+    <color name="colorAccent">#a27930</color>
+
+    <color name="dark_transparent">#66222222</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="gray_scale_120">#222222</color>
+    <color name="gray_scale_110">#4A4B52</color>
+    <color name="gray_scale_90">#5b5c63</color>
+    <color name="gray_scale_80">#666666</color>
+    <color name="gray_scale_70">#8a8a8c</color>
+    <color name="gray_scale_20">#c3c3c7</color>
+    <color name="transparent_green">#aa18b163</color>
+    <color name="plus_color">#13BAAA</color>
+    <color name="minus_color">#f13d21</color>
+    <color name="border_color">#819CA9</color>
+    <color name="switch_color">#546E7A</color>
+    <color name="switch_selector_color">#819CA9</color>
+    <color name="disable_color">#4F616C</color>
+    <color name="button_background">#829EAC</color>
+    <color name="progress_background">#B4B4B4</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="error_color">#CB0000</color>
+    <color name="dark_blue">#002896</color>
+    <color name="light_blue">#0063fa</color>
+    <color name="hint_color">#9F9F9F</color>
+    <color name="light_gray">#E0E0E0</color>
+
+    <color name="transparent_red">#ccff1f1f</color>
+    <color name="transparent_black">#aa000000</color>
+    <color name="low_transparent_black">#66000000</color>
+    <color name="transparent_white">#aaffffff</color>
+    <color name="low_transparent_white">#22ffffff</color>
+    <color name="low_transparent_white2">#99ffffff</color>
+    <color name="low_transparent_white3">#ddffffff</color>
+
+    <color name="btn_green">#30AD63</color>
+    <color name="btn_green_highlight">#1e9b51</color>
+
+    <color name="btn_blue">#1A196c</color>
+    <color name="btn_blue_highlight">#161563</color>
+    <color name="colorBorder">#a7a4a4</color>
+
+
+    <color name="dl_btn_txt_color">#4a95f1</color>
+    <color name="dl_body_txt_color">#4c5054</color>
+    <color name="dl_title_txt_color">#ffffff</color>
+    <color name="dl_btn_pressed_light">#29000000</color>
+    <color name="dl_body_background">#ffffff</color>
+    <color name="dl_title_background">#818487</color>
+    <color name="divider_color">#819CA9</color>
+    <color name="line_divider_color">#e7e7e7</color>
+    <color name="divider_light">@color/gray03</color>
+    <color name="bottom_color">#607681</color>
+
+    <color name="proswipebtn_translucent_white">#33ffffff</color>
+    <color name="proswipebtn_red">#F15824</color>
+    <color name="proswipebtn_disabled_grey">#939393</color>
+
+    <color name="colorBtnBgYellow">#FEF200</color>
+
+
+    <color name="dark_bottom_terminal">#1C313A</color>
+
+    <color name="terminal_pending_bg">#37474F</color>
+    <color name="terminal_delivered_bg">#546e7a</color>
+    <color name="terminal_drop_off_bg">#009688</color>
+    <color name="terminal_picked_up_bg">#007ac1</color>
+
+
+    <color name="terminal_pending_action_bar_bg">#1c313a</color>
+    <color name="terminal_delivered_action_bar_bg">#819ca9</color>
+    <color name="terminal_drop_off_action_bar_bg">#00675b</color>
+    <color name="terminal_picked_up_action_bar_bg">#0171b2</color>
+
+
+    <color name="default_selected_dot_color">#ffffff</color>
+    <color name="default_dot_color">#e8e8e8</color>
+    <color name="problem_color">#FFF1A5</color>
+    <color name="signature_green">#00EF74</color>
+    <color name="gray_70">#707070</color>
+    <color name="light_green">#01d267</color>
+
+
+    <color name="home_fragment_bg">#2A3940</color>
+    <color name="go_offline_button_bg">#81213F</color>
+    <color name="hit_text_color">#b4b4b4</color>
+    <color name="error_message_color">#fea600</color>
+    <color name="success_message_color">#009688</color>
+
+    <color name="yellow_warnings">#fced64</color>
+    <color name="mulledWine">#524A67</color>
+
+    <color name="good_gray">#1a334659</color>
+
+
+    <color name="popup_bg">#77000000</color>
+
+    <color name="gulfBlue">#334659</color>
+    <color name="gullGrey">#A4ADB1</color>
+
+    <color name="real_secondary">#151F33</color>
+
+
+    <color name="primary">#06DF70</color>
+    <color name="secondary">@color/real_secondary</color>
+    <color name="low_transparent_secondary">#99151F33</color>
+    <color name="linkButtons">#00B36E</color>
+    <color name="uiButton">#00D170</color>
+    <color name="promotion">#001FBB</color>
+    <color name="gray">#D7D7D7</color>
+    <color name="information">#00B0FF</color>
+    <color name="success">#00C663</color>
+    <color name="danger">#CE0024</color>
+    <color name="warning">#FFDF00</color>
+
+
+    <color name="material_grey_500">#9E9E9E</color>
+    <color name="material_grey_400">#BDBDBD</color>
+    <color name="material_red_500">#F44336</color>
+    <color name="material_blue_500">#2196F3</color>
+    <color name="item_event">#F8F8F8</color>
+
+
+    <color name="home_fragment_header">#000000</color>
+    <color name="text_color">#000000</color>
+    <color name="home_fragment_header_text_color">#FFFFFF</color>
+    <color name="tab_bar_background_color">#FFFFFF</color>
+
+    <color name="toolbar_bg">#FFFFFF</color>
+
+    <color name="main_bg">#E0E0E0</color>
+    <color name="adapter_items_bg">#FFFFFF</color>
+
+
+    <color name="order_dash_color">#707070</color>
+
+    <color name="splash_bg">#FFFFFF</color>
+
+
+
+
+    <color name="pollView_progress">#151F33</color>
+    <color name="pollView_progress_bg">#455A64</color>
+    <color name="pollView_border">@color/blue</color>
+
+    <color name="pollView_normal_text_color">#ffffff</color>
+    <color name="pollView_disabled_text_color">@color/pollView_normal_text_color</color>
+    <color name="pollView_selected_text_color">@color/pollView_normal_text_color</color>
+    <color name="pollView_beneath_text_color">@color/pollView_normal_text_color</color>
+    <color name="pollView_above_text_color">@color/pollView_normal_text_color</color>
+
+    <color name="real_white_in_night_day">#FFFFFF</color>
+
+
+    <color name="blueLighter">#800048D9</color>
+    <color name="blue">#0048D9</color>`
+    <color name="blueDark">#0D3D80</color>
+    <color name="blueDeepDark">#061C3F</color>
+
+
+    <color name="background">#FFFFFF</color>
+    <color name="background_inverse">#181A1E</color>
+    <color name="white_alpha_24">#3DFFFFFF</color>
+
+    <color name="gray01">#F5F6F7</color>
+    <color name="gray02">#EDF0F2</color>
+    <color name="gray03">#DFE2E6</color>
+    <color name="gray04">#C9CED4</color>
+    <color name="gray05">#A4ABB3</color>
+    <color name="gray06">#6C7480</color>
+    <color name="gray07">#4A5059</color>
+    <color name="gray08">#242933</color>
+
+    <color name="greenLighter">#DFF2DF</color>
+    <color name="green">#47B374</color>
+    <color name="greenDark">#407F5F</color>
+
+    <color name="yellowLighter">#FAF0D1</color>
+    <color name="yellow">#F3B63D</color>
+    <color name="yellowDarker">#D1961F</color>
+
+    <color name="redLighter">#F8E7E4</color>
+    <color name="red">#F0543C</color>
     <color name="redDark">#CC3F29</color>
+
+    <!-- Custom CardView -->
+    <color name="shadow1">#01000000</color>
+    <color name="shadow2">#02000000</color>
+    <color name="shadow3">#03000000</color>
+    <color name="shadow4">#04000000</color>
+    <color name="shadow5">#0D000000</color>
+
+    <!-- Transparency -->
+    <color name="whiteTransparent1">#BBFFFFFF</color>
+    <color name="whiteTransparent2">#88FFFFFF</color>
+    <color name="whiteTransparent3">#55FFFFFF</color>
+    <color name="whiteTransparent4">#22FFFFFF</color>
+    <color name="blackTransparent1">#BB000000</color>
+    <color name="blackTransparent2">#880000</color>
+    <color name="blackTransparent3">#55000000</color>
+    <color name="blackTransparent4">#22000000</color>
+
+    <!-- Custom EditText -->
+    <color name="edit_text_error_text_color">@color/red</color>
+
+    <color name="gray_home_btn">#f0f1f3</color>
+    <color name="tile_home_green">#9cae87</color>
+    <color name="tile_home_brown">#847870</color>
+    <color name="tile_home_dark_brown">#be9b60</color>
+    <color name="text_gray">#a1a3a8</color>
+    <color name="text_gray_dark">#77787b</color>
+    <color name="text_gray_dark2">#68696a</color>
+    <color name="button_black">#2f3031</color>
+    <color name="button_disable">#c1c1c1</color>
+    <color name="toolbar_divider_background">#eeeeef</color>
+    <color name="app_text_color">#3c3e47</color>
+    <color name="box_carbon_gray">#404040</color>
+    <color name="small_divider">#eae9ef</color>
+
+    <color name="box_gray_light_2">#E6E6E6</color>
+    <color name="box_light_green">#1c22A958</color>
+    <color name="box_color_accent_press">@color/box_green_blue_two</color>
+    <color name="box_green_blue_two">#00b36e</color>
+    <color name="box_error_red">#bd272d</color>
+
+    <color name="transparentWhite">#ccffffff</color>
+    <color name="orderListBg">#F4F4F4</color>
+    <color name="orderItemDividerColor">#e6e8eb</color>
+
+
+    <color name="stpi_default_circle_color">#b3bdc2</color>
+    <color name="stpi_default_primary_color">#00b47c</color>
+    <color name="stpi_default_line_color">#b3bdc2</color>
+    <color name="light_accent">#fff3e1</color>
+    <color name="grayLight">#f6f6f6</color>
+    <color name="grayLight2">#e5e5e5</color>
+    <color name="light_black">#1f1f20</color>
+    <color name="light_orange">#f2d6ab</color>
+
 </resources>

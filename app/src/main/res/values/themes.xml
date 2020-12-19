@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="UiTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar"/>
+
+    <!-- Base application theme. -->
+    <style name="MainTheme" parent="UiTheme">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/blueDark</item>
+        <item name="colorSecondary">@color/background</item>
+        <item name="colorOnSecondary">@color/blue</item>
+        <item name="colorError">@color/red</item>
+        <item name="colorOnError">@color/white</item>
+        <item name="colorAccent">@color/blue</item>
+        <item name="colorOnBackground">@color/gray03</item>
+        <item name="android:colorBackground">@color/background</item>
+
+    </style>
+
+
+</resources>
