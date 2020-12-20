@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:mapbox="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -32,9 +32,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            mapbox:mapbox_cameraTargetLat="35.7322404"
-            mapbox:mapbox_cameraTargetLng="51.3882615"
-            mapbox:mapbox_cameraZoom="5" />
+            tools:mapbox_cameraTargetLat="35.7322404"
+            tools:mapbox_cameraTargetLng="51.3882615"
+            tools:mapbox_cameraZoom="5" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -43,6 +43,27 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.8" />
 
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline"
+            >
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/locationsViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_gravity="center"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+        </FrameLayout>
 
 
 
