@@ -36,6 +36,10 @@
         android:label="@string/detail_fragment"
         tools:layout="@layout/fragment_detail">
 
+        <argument
+            android:name="placeInfo"
+            app:argType="com.task.interview.model.PlaceInfo"
+            />
 
     </fragment>
 

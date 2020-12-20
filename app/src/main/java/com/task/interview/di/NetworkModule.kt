@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 val networkModule = module {
 
     factory {
-        provideAppApi(retrofitInstance("https://api.foursquare.com/v2/venues/"))
+        provideAppApi(retrofitInstance("https://rezaabedi261.github.io/"))
     }
 
     factory {

@@ -9,7 +9,7 @@ import retrofit2.http.Query
 
 interface AppApi {
 
-    @GET("https://rezaabedi261.github.io/main.json")
+    @GET("main.json")
     suspend fun getPlaces(): Resource<Places>
 
 }
