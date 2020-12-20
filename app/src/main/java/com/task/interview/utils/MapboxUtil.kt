@@ -13,8 +13,6 @@ import java.util.*
 
 object MapboxUtil {
 
-    val prefs: AppPreferences by inject()
-
     @Keep
     fun getId(@DrawableRes drawable: Int): String {
         return String.format(Locale.US, "android_drawable_res_%d", drawable)

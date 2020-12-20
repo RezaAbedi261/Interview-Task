@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.observe
 import androidx.navigation.NavDirections
@@ -76,6 +77,11 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     open fun liveDataObservers() {}
 
     fun <T> observe(livaData: MutableLiveData<T>, function: (T) -> Unit) {
+        livaData.observe(this@BaseFragment) {
+            function.invoke(it)
+        }
+    }
+    fun <T> observe(livaData: LiveData<T>, function: (T) -> Unit) {
         livaData.observe(this@BaseFragment) {
             function.invoke(it)
         }

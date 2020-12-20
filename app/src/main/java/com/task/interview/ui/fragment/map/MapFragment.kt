@@ -1,41 +1,50 @@
 package com.task.interview.ui.fragment.map
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.viewpager2.widget.ViewPager2
 import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.mapboxsdk.Mapbox
+import com.mapbox.mapboxsdk.camera.CameraPosition
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.location.LocationComponent
 import com.mapbox.mapboxsdk.location.modes.CameraMode
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
+import com.mapbox.mapboxsdk.plugins.annotation.Symbol
+import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager
+import com.mapbox.mapboxsdk.plugins.annotation.SymbolOptions
+import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions
+import com.mapbox.mapboxsdk.utils.ColorUtils
 import com.task.interview.R
 import com.task.interview.base.BaseFragment
 import com.task.interview.databinding.FragmentMapBinding
-import com.task.interview.model.Places
+import com.task.interview.model.PlaceInfo
+import com.task.interview.utils.MapboxUtil
+import com.task.interview.utils.ZOOM_LEVEL
 import kotlinx.android.synthetic.main.fragment_map.*
 import org.koin.android.ext.android.inject
+import kotlin.math.abs
 
 
 class MapFragment : BaseFragment<FragmentMapBinding, MapFragmentVM>(),
-    MapboxMap.OnMapClickListener, OnMapReadyCallback {
+    MapboxMap.OnMapClickListener, OnMapReadyCallback, LocationItemListener {
 
 
     override val viewModel: MapFragmentVM by viewModels()
-    lateinit var locationInfo: Places
-    private val SOURCE_ID = "SOURCE_ID"
-    private val ICON_ID = "ICON_ID"
-    private val LAYER_ID = "LAYER_ID"
     override fun layout() = R.layout.fragment_map;
 
     val mapStyle: Style.Builder by inject()
     private var mapboxMap: MapboxMap? = null
     private var locationComponent: LocationComponent? = null
     private var permissionsManager: PermissionsManager? = null
-
-
+    var adapter: LocationListAdapter? = null
+    var symbolManager: SymbolManager? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Mapbox.getInstance(app, getString(R.string.mapbox_access_token))
@@ -44,21 +53,67 @@ class MapFragment : BaseFragment<FragmentMapBinding, MapFragmentVM>(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-
         mapView.onCreate(savedInstanceState);
         mapView?.getMapAsync(this)
 
+        initLocationViewPager()
+        viewModel.getLocations()
+    }
 
+    private fun initLocationViewPager() {
+
+        adapter = LocationListAdapter(context, this)
+        locationsViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        locationsViewPager.adapter = adapter
+        locationsViewPager.offscreenPageLimit = 1
+
+
+        val nextItemVisiblePx = resources.getDimension(R.dimen.viewpager_next_item_visible)
+        val currentItemHorizontalMarginPx =
+            resources.getDimension(R.dimen.viewpager_current_item_horizontal_margin)
+        val pageTranslationX = nextItemVisiblePx + currentItemHorizontalMarginPx
+        val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float ->
+            page.translationX = +pageTranslationX * position
+            page.scaleY = 1 - (0.25f * abs(position))
+        }
+        locationsViewPager.setPageTransformer(pageTransformer)
+
+        val itemDecoration = HorizontalMarginItemDecoration(
+            requireContext(),
+            R.dimen.viewpager_current_item_horizontal_margin
+        )
+        locationsViewPager.addItemDecoration(itemDecoration)
+
+        locationsViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                viewModel.locations.value?.get(position)?.let { moveCamera(it) }
+
+            }
+        })
     }
 
     override fun onMapReady(mapboxMap: MapboxMap) {
         this.mapboxMap = mapboxMap
 
-        addMarker()
+
         mapboxMap.setStyle(mapStyle) { style ->
             enableLocationComponent(style)
             mapboxMap.addOnMapClickListener(this)
-            moveCamera()
+            val geoJsonOptions: GeoJsonOptions = GeoJsonOptions().withTolerance(0.4f)
+
+            symbolManager = SymbolManager(mapView, mapboxMap, style, null, geoJsonOptions)
+            symbolManager?.iconAllowOverlap = true
+            symbolManager?.iconIgnorePlacement = true
+            symbolManager?.addClickListener { symbol: Symbol ->
+                Toast.makeText(
+                    context, String.format("Symbol clicked %s", symbol.id),
+                    Toast.LENGTH_SHORT
+                ).show()
+                false
+            }
+
+            viewModel.mapReady.value = true
         }
     }
 
@@ -82,6 +137,15 @@ class MapFragment : BaseFragment<FragmentMapBinding, MapFragmentVM>(),
     }
 
     override fun liveDataObservers() {
+        observe(viewModel.locations) { locations ->
+            if (!locations.isNullOrEmpty()) {
+                adapter?.addItems(locations)
+                locations.forEach {
+                    addMarker(it)
+                }
+                moveCamera(locations[0])
+            }
+        }
     }
 
 
@@ -125,65 +189,40 @@ class MapFragment : BaseFragment<FragmentMapBinding, MapFragmentVM>(),
         return false
     }
 
-    fun addMarker() {
-
-//        locationInfo?.let {
-//            if (locationInfo.location != null && locationInfo.location?.lat != null && locationInfo.location?.lng != null) {
-//                mapStyle.withImage(
-//                    ICON_ID, BitmapFactory.decodeResource(
-//                        resources, R.drawable.mapbox_marker_icon_default
-//                    )
-//                )
-//                    .withSource(
-//                        GeoJsonSource(
-//                            SOURCE_ID, FeatureCollection.fromFeature(
-//                                Feature.fromGeometry(
-//                                    Point.fromLngLat(
-//                                        locationInfo.location?.lng!!,
-//                                        locationInfo.location?.lat!!
-//                                    )
-//                                )
-//                            )
-//                        )
-//                    )
-//                    .withLayer(
-//                        SymbolLayer(LAYER_ID, SOURCE_ID)
-//                            .withProperties(
-//                                PropertyFactory.iconImage(ICON_ID),
-//                                PropertyFactory.iconAllowOverlap(true),
-//                                PropertyFactory.iconIgnorePlacement(true)
-//                            )
-//                    )
-//
-//            }
-//
-//            binding.tvAddress.setRightText(locationInfo.location?.country + locationInfo.location?.city + locationInfo.location?.address)
-//            locationInfo.name?.let { it1 -> binding.tvName.setRightText(it1) }
-//            if (locationInfo?.categories.isNotEmpty())
-//                locationInfo?.categories[0].name?.let { it1 -> binding.tvCategory.setRightText(it1) }
-//        }
+    fun addMarker(placeInfo: PlaceInfo) {
+        symbolManager?.create(
+            SymbolOptions()
+                .withLatLng(LatLng(placeInfo.lat, placeInfo.lng))
+                .withIconImage(MapboxUtil.pin.id)
+                .withIconColor(ColorUtils.colorToRgbaString(Color.YELLOW))
+                .withIconSize(1.0f)
+                .withSymbolSortKey(5.0f)
+                .withDraggable(true)
+        )
     }
 
-    private fun moveCamera() {
-//        locationInfo?.let {
-//            if (locationInfo.location != null && locationInfo.location?.lat != null && locationInfo.location?.lng != null) {
-//                val position = CameraPosition.Builder()
-//                    .target(
-//                        LatLng(
-//                            locationInfo.location?.lat!!,
-//                            locationInfo.location?.lng!!
-//                        )
-//                    )
-//                    .zoom(ZOOM_LEVEL)
-//                    .bearing(180.0)
-//                    .tilt(30.0)
-//                    .build()
-//
-//                mapboxMap?.animateCamera(
-//                    CameraUpdateFactory
-//                        .newCameraPosition(position), 2000
-//                )
-//            }
-//        }
+    private fun moveCamera(placeInfo: PlaceInfo) {
+        placeInfo.let {
+            val position = CameraPosition.Builder()
+                .target(
+                    LatLng(
+                        it.lat,
+                        it.lng
+                    )
+                )
+                .zoom(ZOOM_LEVEL)
+                .bearing(180.0)
+                .tilt(30.0)
+                .build()
+
+            mapboxMap?.animateCamera(
+                CameraUpdateFactory
+                    .newCameraPosition(position), 2000
+            )
+        }
+    }
+
+    override fun onClick(item: PlaceInfo) {
+
     }
 }
