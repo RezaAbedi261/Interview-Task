@@ -13,6 +13,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.observe
 import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
+import androidx.navigation.Navigator
 import androidx.navigation.fragment.findNavController
 import com.task.interview.App
 import com.task.interview.di.inject
@@ -85,6 +86,11 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     fun navigate(destination: NavDirections, options: NavOptions?) = with(findNavController()) {
         currentDestination?.getAction(destination.actionId)
             ?.let { navigate(destination,options) }
+    }
+
+    fun navigate(destination: NavDirections, options: NavOptions?, navigatorExtras:Navigator.Extras?) = with(findNavController()) {
+        currentDestination?.getAction(destination.actionId)?.let { navigate(destination.actionId, null, options, navigatorExtras) }
+//        navigate(destination.actionId, null,options, navigatorExtras)
     }
 
 
