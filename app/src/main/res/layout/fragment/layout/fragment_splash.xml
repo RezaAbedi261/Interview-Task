@@ -45,7 +45,7 @@
             app:layout_constraintTop_toBottomOf="@id/iv_loading"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            style="@style/BaseTextView.Default.Title"
+            style="@style/Title"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

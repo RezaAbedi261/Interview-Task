@@ -1,10 +1,13 @@
 package com.task.interview.ui.fragment.map
 
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.viewpager2.widget.ViewPager2
 import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.mapboxsdk.Mapbox
@@ -26,6 +29,7 @@ import com.task.interview.base.BaseFragment
 import com.task.interview.databinding.FragmentMapBinding
 import com.task.interview.model.PlaceInfo
 import com.task.interview.utils.MapboxUtil
+import com.task.interview.utils.NavigationAnimations
 import com.task.interview.utils.ZOOM_LEVEL
 import kotlinx.android.synthetic.main.fragment_map.*
 import org.koin.android.ext.android.inject
@@ -221,7 +225,21 @@ class MapFragment : BaseFragment<FragmentMapBinding, MapFragmentVM>(),
         }
     }
 
-    override fun onClick(item: PlaceInfo) {
+    override fun onClick(item: PlaceInfo, imageView: ImageView) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            imageView.transitionName = "imageView"
+            val extras = FragmentNavigatorExtras(
+                imageView to "imageView"
+            )
+            navigate(MapFragmentDirections.actionMapToDetail(item), extras)
+        } else {
+            navigate(
+                MapFragmentDirections.actionMapToDetail(item),
+                NavigationAnimations.leftToRight
+            )
+
+        }
+
 
     }
 }

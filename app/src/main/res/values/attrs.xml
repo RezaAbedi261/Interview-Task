@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
+    <declare-styleable name="Comment">
+        <attr name="name" format="string" />
+        <attr name="comment" format="string" />
+        <attr name="dateTime" format="string" />
+        <attr name="userPhoto" format="string" />
+        <attr name="rate" format="integer" />
+    </declare-styleable>
 
 </resources>
