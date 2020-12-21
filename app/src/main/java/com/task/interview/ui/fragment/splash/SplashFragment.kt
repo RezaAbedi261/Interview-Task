@@ -23,8 +23,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashFragmentVM>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        LocationsRepository.getLocations()
+        viewModel.getLocations()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

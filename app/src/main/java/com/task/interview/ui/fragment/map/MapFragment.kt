@@ -5,10 +5,12 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.viewpager2.widget.ViewPager2
+import com.github.musichin.reactivelivedata.combineLatestWith
+import com.github.musichin.reactivelivedata.filterNotNull
 import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.camera.CameraPosition
@@ -30,6 +32,7 @@ import com.task.interview.databinding.FragmentMapBinding
 import com.task.interview.model.PlaceInfo
 import com.task.interview.utils.MapboxUtil
 import com.task.interview.utils.NavigationAnimations
+import com.task.interview.utils.SingleLiveEvent
 import com.task.interview.utils.ZOOM_LEVEL
 import kotlinx.android.synthetic.main.fragment_map.*
 import org.koin.android.ext.android.inject
@@ -109,14 +112,10 @@ class MapFragment : BaseFragment<FragmentMapBinding, MapFragmentVM>(),
             symbolManager?.iconAllowOverlap = true
             symbolManager?.iconIgnorePlacement = true
             symbolManager?.addClickListener { symbol: Symbol ->
-                Toast.makeText(
-                    context, String.format("Symbol clicked %s", symbol.id),
-                    Toast.LENGTH_SHORT
-                ).show()
                 false
             }
 
-            viewModel.mapReady.value = true
+            mapReadyLD.value = true
         }
     }
 
@@ -140,13 +139,15 @@ class MapFragment : BaseFragment<FragmentMapBinding, MapFragmentVM>(),
     }
 
     override fun liveDataObservers() {
-        observe(viewModel.locations) { locations ->
+        observe(viewModel.locations.mapReady) { locations ->
             if (!locations.isNullOrEmpty()) {
-                adapter?.addItems(locations)
+                adapter?.setItems(locations)
                 locations.forEach {
                     addMarker(it)
                 }
                 moveCamera(locations[0])
+            } else {
+                moveCamera(35.757529, 51.409930)//Vanak square :))
             }
         }
     }
@@ -166,6 +167,7 @@ class MapFragment : BaseFragment<FragmentMapBinding, MapFragmentVM>(),
     override fun onStop() {
         super.onStop()
         mapView?.onStop()
+        mapReadyLD.value = false
     }
 
     override fun onPause() {
@@ -204,25 +206,23 @@ class MapFragment : BaseFragment<FragmentMapBinding, MapFragmentVM>(),
         )
     }
 
-    private fun moveCamera(placeInfo: PlaceInfo) {
-        placeInfo.let {
-            val position = CameraPosition.Builder()
-                .target(
-                    LatLng(
-                        it.lat,
-                        it.lng
-                    )
-                )
-                .zoom(ZOOM_LEVEL)
-                .bearing(180.0)
-                .tilt(30.0)
-                .build()
+    private fun moveCamera(lat: Double,lng:Double) {
+        val position = CameraPosition.Builder()
+            .target(LatLng(lat, lng))
+            .zoom(ZOOM_LEVEL)
+            .bearing(180.0)
+            .tilt(30.0)
+            .build()
 
-            mapboxMap?.animateCamera(
-                CameraUpdateFactory
-                    .newCameraPosition(position), 2000
-            )
-        }
+        mapboxMap?.animateCamera(
+            CameraUpdateFactory
+                .newCameraPosition(position), 2000
+        )
+    }
+        private fun moveCamera(placeInfo: PlaceInfo) {
+            placeInfo.let {
+                moveCamera(it.lat,it.lng)
+            }
     }
 
     override fun onClick(item: PlaceInfo, imageView: ImageView) {
@@ -242,4 +242,7 @@ class MapFragment : BaseFragment<FragmentMapBinding, MapFragmentVM>(),
 
 
     }
+
+    private val mapReadyLD = SingleLiveEvent<Boolean>()
+    val<T> LiveData<T>.mapReady get() = this.combineLatestWith(mapReadyLD){a,r -> if(r) a else null}.filterNotNull()
 }

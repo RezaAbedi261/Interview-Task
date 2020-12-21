@@ -63,7 +63,8 @@ class LocationListAdapter internal constructor(
         return mData.size
     }
 
-    fun addItems(locations :ArrayList<PlaceInfo>) {
+    fun setItems(locations :ArrayList<PlaceInfo>) {
+        mData.clear()
         mData.addAll(locations)
         notifyDataSetChanged()
     }
