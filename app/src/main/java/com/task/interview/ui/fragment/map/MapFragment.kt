@@ -57,7 +57,6 @@ class MapFragment : BaseFragment<FragmentMapBinding, MapFragmentVM>(),
         mapView?.getMapAsync(this)
 
         initLocationViewPager()
-        viewModel.getLocations()
     }
 
     private fun initLocationViewPager() {

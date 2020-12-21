@@ -1,10 +1,15 @@
 package com.task.interview.model
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import kotlinx.android.parcel.Parcelize
 
+@Entity
 @Parcelize
 data class PlaceInfo(
+    @PrimaryKey
     val lat:Double,
     val lng:Double,
     val background_photo:String,
@@ -13,8 +18,8 @@ data class PlaceInfo(
     val open:String,
     val close:String,
     val address:String,
-    val photos:ArrayList<String>,
     val rate:Float,
-    val options:ArrayList<String>,
-    val comments:ArrayList<Comment>
+    @TypeConverters(CategoryConverter::class)val photos:ArrayList<String>?,
+    @TypeConverters(CategoryConverter::class)val options:ArrayList<String>?,
+    @TypeConverters(CategoryConverter::class) val comments:ArrayList<Comment>
 ) : Parcelable

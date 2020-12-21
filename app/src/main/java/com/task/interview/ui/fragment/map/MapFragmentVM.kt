@@ -6,21 +6,17 @@ import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.map
 import com.github.musichin.reactivelivedata.combineLatestWith
 import com.task.interview.base.BaseViewModel
+import com.task.interview.data.repository.LocationsRepository
 import com.task.interview.model.PlaceInfo
-import com.task.interview.model.Places
-import com.task.interview.utils.testModel
+
 
 class MapFragmentVM : BaseViewModel() {
 
     val mapReady = MutableLiveData<Boolean>()
-    val locationsResponse = MutableLiveData<Places>()
+    val locationsResponse = LocationsRepository.locations
     val locations: LiveData<ArrayList<PlaceInfo>> =
         locationsResponse.combineLatestWith(mapReady).distinctUntilChanged().map {
-            it.first.places
+            it.first
         }
-
-    fun getLocations() {
-        locationsResponse.value = testModel()
-    }
 
 }

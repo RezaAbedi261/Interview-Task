@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.task.interview.R
 import com.task.interview.base.BaseFragment
+import com.task.interview.data.repository.LocationsRepository
 import com.task.interview.databinding.FragmentSplashBinding
 import com.task.interview.utils.NavigationAnimations
 import kotlinx.coroutines.CoroutineScope
@@ -23,7 +24,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashFragmentVM>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
+        LocationsRepository.getLocations()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
