@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:padding="9dp">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ivUserImage"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -28,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Text"
+            android:layout_marginStart="10dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivUserImage"
             tools:text="امیر اکبری"
@@ -42,7 +43,8 @@
             app:layout_constraintTop_toBottomOf="@id/ivUserImage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="ضمن عرضسلام وخسته نباشيد خدمت بروبچه هاي محترم تخفيفان..بوفه صبحانه بلوط دركل نسبت به چندجاي ديگه كه رفته بودم به مراتب بهتر بود..دستشون درد نكنه..چه از لحاظ كيفيت وچه از لحاظ تنوع..فقط من نميدونم چرا بوفه صبحانه ها گردو رو باپوست ميذارن سر ميز!دليلش ميدونم گرون بودن اين خشكباره اما به نظرم زياد اينكار جالب نيست..خانم خود بنده اومد چندتا گردو بشكونه بااون گردوشكن فنرش دررفت ودست ايشون رو گاز گرفت كبود شد اصلا زهرمارمون شد ..به غير از اين ضعف واينكه ميوه يكبار بيشتر شارژنشد..الباقي درحد خوب..ممنونم.."
+            android:layout_marginTop="10dp"
+            tools:text="ضمن عرض سلام وخسته نباشيد خدمت بروبچه هاي محترم تخفيفان..بوفه صبحانه بلوط دركل نسبت به چندجاي ديگه كه رفته بودم به مراتب بهتر بود..دستشون درد نكنه..چه از لحاظ كيفيت وچه از لحاظ تنوع..فقط من نميدونم چرا بوفه صبحانه ها گردو رو باپوست ميذارن سر ميز!دليلش ميدونم گرون بودن اين خشكباره اما به نظرم زياد اينكار جالب نيست..خانم خود بنده اومد چندتا گردو بشكونه بااون گردوشكن فنرش دررفت ودست ايشون رو گاز گرفت كبود شد اصلا زهرمارمون شد ..به غير از اين ضعف واينكه ميوه يكبار بيشتر شارژنشد..الباقي درحد خوب..ممنونم.."
             />
 
         <com.google.android.material.textview.MaterialTextView

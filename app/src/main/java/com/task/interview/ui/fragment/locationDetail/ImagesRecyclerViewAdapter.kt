@@ -10,7 +10,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.task.interview.R
 
 class ImagesRecyclerViewAdapter(
-    private val items: List<String>
+    private val items: ArrayList<String>
 ) : RecyclerView.Adapter<ImagesRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

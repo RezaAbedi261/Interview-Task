@@ -26,7 +26,12 @@
 
         <action
             android:id="@+id/action_map_to_detail"
-            app:destination="@id/detail" />
+            app:destination="@id/detail"
+            app:popEnterAnim="@anim/fragment_animation_left_to_right_pop_enter"
+            app:popExitAnim="@anim/fragment_animation_left_to_right_pop_exit"
+            app:enterAnim="@anim/fragment_animation_right_to_left_enter"
+            app:exitAnim="@anim/fragment_animation_right_to_left_exit"
+            />
     </fragment>
 
 

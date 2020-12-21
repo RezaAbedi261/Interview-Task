@@ -47,12 +47,21 @@ class CommentView @JvmOverloads constructor(context: Context, attrs: AttributeSe
 
     }
 
-    fun setData (comment : Comment) : CommentView {
-        Glide.with(this).load(comment.photo).into(ivUserImage)
+    fun setData(comment: Comment): CommentView {
+        Glide
+            .with(this)
+            .load(comment.photo)
+            .centerCrop()
+            .skipMemoryCache(true)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .placeholder(R.drawable.placeholderloading)
+            .error(R.drawable.ic_account)
+            .into(ivUserImage)
         tvUserName.text = comment.name
-        tvComment.text = comment.text
         tvDateTime.text = comment.date
         tvRate.text = comment.rate
+        tvComment.text = comment.text
+
         return this
     }
 
