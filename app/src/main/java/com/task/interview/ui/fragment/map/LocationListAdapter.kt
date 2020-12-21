@@ -5,6 +5,7 @@ import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.annotation.DimenRes
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -21,7 +22,6 @@ class LocationListAdapter internal constructor(
 
     private val mData = ArrayList<PlaceInfo>()
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
-    var currentView: LocationListAdapter.ViewHolder? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -38,7 +38,7 @@ class LocationListAdapter internal constructor(
         val item = mData[position]
 
         holder.itemView.setOnClickListener {
-            delegate.onClick(item)
+            delegate.onClick(item,holder.itemView.imageView)
         }
 
         if (item.background_photo.isNotEmpty()) {
@@ -50,14 +50,13 @@ class LocationListAdapter internal constructor(
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.drawable.placeholderloading)
-                .into(holder.itemView.image)
+                .into(holder.itemView.imageView)
         }
 
         holder.itemView.locationName.text = item.name
         holder.itemView.locationType.text = item.type
         holder.itemView.locationRate.text = item.rate.toString()
         holder.itemView.locationTime.text = "${item.open} ${item.close}"
-        currentView = holder
     }
 
     override fun getItemCount(): Int {
@@ -88,5 +87,5 @@ class HorizontalMarginItemDecoration(context: Context, @DimenRes horizontalMargi
 }
 
 interface LocationItemListener {
-    fun onClick(item: PlaceInfo)
+    fun onClick(item: PlaceInfo, imageView: ImageView)
 }

@@ -94,9 +94,10 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
             ?.let { navigate(destination,options) }
     }
 
-    fun navigate(destination: NavDirections, options: NavOptions?, navigatorExtras:Navigator.Extras?) = with(findNavController()) {
-        currentDestination?.getAction(destination.actionId)?.let { navigate(destination.actionId, null, options, navigatorExtras) }
-//        navigate(destination.actionId, null,options, navigatorExtras)
+    fun navigate(destination: NavDirections, navigatorExtras: Navigator.Extras) =
+        with(findNavController()) {
+        currentDestination?.getAction(destination.actionId)
+            ?.let { navigate(destination, navigatorExtras) }
     }
 
 
