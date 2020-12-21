@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -67,7 +68,73 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Title"
+                        android:layout_margin="5dp"
+                        tools:text="صبحانه لاکچری در رستوران رو باز بلوط" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        style="@style/Text"
+                        tools:text="بوفه صبحانه" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        style="@style/Text"
+                        android:textColor="@color/gray07"
+                        tools:text="19:00 23:00" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        style="@style/Text"
+                        tools:text="ولنجک، خیابان یمن، بالاتر از مقدس اردبیلی، سمت چپ باغ گیاه شناسی" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/imagesRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/image_cell"
+                        android:orientation="horizontal"
+                        android:layout_margin="5dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvOptions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        style="@style/Text"
+                        android:lineSpacingMultiplier="1.4"
+                        tools:text="کارت‌خوان\n جای پارک آسان" />
+
+                    <LinearLayout
+                        android:id="@+id/llComments"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp"
+                        />
+
+
+                </LinearLayout>
             </androidx.core.widget.NestedScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
